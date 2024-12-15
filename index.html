@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <main>
+    <section class="calculator">
+      <h1>SPLI<br>TTER</h1>
+
+      <form action="#" method="post" id="tipCalculator">
+
+        <div class="form-group">
+          <label for="billAmount">Bill</label>
+          <input type="number" id="billAmount" name="billAmount" placeholder="0.00" required>
+        </div>
+
+        <div class="form-group">
+          <label>Select Tip %</label>
+          <div class="tip-buttons">
+            <button type="button" class="tip-btn" data-tip="5">5%</button>
+            <button type="button" class="tip-btn" data-tip="10">10%</button>
+            <button type="button" class="tip-btn" data-tip="15">15%</button>
+            <button type="button" class="tip-btn" data-tip="25">25%</button>
+            <button type="button" class="tip-btn" data-tip="50">50%</button>
+            <input type="number" id="customTip" name="customTip" placeholder="Custom" aria-label="custom-tip">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="numPeople">Number of People</label>
+          <input type="number" id="numPeople" name="numPeople" min="1" value="1" required>
+        </div>
+
+        <div class="results">
+          <div class="result-item">
+            <p>Tip Amount <span>/ person</span></p>
+            <span id="tipAmountPerPerson">$0.00</span>
+          </div>
+          <div class="result-item">
+            <p>Total <span>/ person</span></p>
+            <span id="totalAmountPerPerson">$0.00</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="reset" id="resetBtn">Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  
+  <footer class="attribution">
+    <span>Challenge by <a href="https://www.frontendmentor.io/profile/FacundoDLR/solutions" target="_blank">Frontend
+        Mentor</a>.</span>
+    <span>Coded by <a href="https://github.com/FacundoDLR" target="_blank">FACUNDO A. DE LOS RIOS</a>.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
