@@ -80,4 +80,15 @@ const calculate = () => {
     console.log('Total per Person with tip : ' + (totalPerPerson + tipPerPerson).toFixed(2))
 }
 
+resetBtn.addEventListener("click", () => {
+    // Reset all field values
+    billAmountInput.value = '';
+    numPeopleInput.value = 1;
+    customTipInput.value = '0';
+    customTip = 0;
+    selectedTip = 0;
+    tipButtons.forEach(button => button.classList.remove("active"));
+    tipAmountPerPerson.textContent = "$0.00";
+    totalAmountPerPerson.textContent = "$0.00";
+});
 
