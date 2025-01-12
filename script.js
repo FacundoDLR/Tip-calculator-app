@@ -4,7 +4,7 @@ const tipButtons = document.querySelectorAll(".tip-btn");
 const customTipInput = document.getElementById("customTip");
 const tipAmountPerPerson = document.getElementById("tipAmountPerPerson");
 const totalAmountPerPerson = document.getElementById("totalAmountPerPerson");
-const resetBtn = document.getElementById("resetBtn");
+const form = document.getElementById("tipCalculator");
 
 // var to store the values
 let selectedTip = 0;
@@ -26,7 +26,7 @@ tipButtons.forEach(button => {
         selectedTip = parseFloat(button.dataset.tip);
         customTipInput.value = '';
         customTip = 0;
-        console.log('selected tip: ' + selectedTip);
+        /* console.log('selected tip: ' + selectedTip); */
         calculate(); // recalculate with selctedTip
     });
 })
@@ -42,15 +42,17 @@ customTipInput.addEventListener('input', function () {
         selectedTip = 0; // Reset selected tip
         tipButtons.forEach(btn => btn.classList.remove('active')); // Uncheck all buttons
     }
-    console.log('Custom tip: ' + customTip);
+    /* console.log('Custom tip: ' + customTip); */
     calculate(); // recalculate with custom tip
 })
 
 billAmountInput.addEventListener('input', () => {
+    if (billAmountInput.value < 0) billAmountInput.value = 0;
     calculate();
 })
 
 numPeopleInput.addEventListener('input', () => {
+    if (numPeopleInput.value < 1) numPeopleInput.value = 1;
     calculate();
 })
 
@@ -59,32 +61,27 @@ const calculate = () => {
     const billAmount = getBillAmount(); // Obtain total amount
     const numPeople = getNumPeople(); // Obtain N° people
 
-    // Total without Tip
-    const totalPerPerson = billAmount / numPeople;
-    if (!customTip && customTip === 0) {
-        totalAmountPerPerson.textContent = `${totalPerPerson.toFixed(2)}`;
+    const round = (value) => parseFloat(value.toFixed(2)); // function to round values
 
-    }
+    // Handling custom or selected tip cases
+    const tipAmount = customTip > 0
+    ? (billAmount * customTip) / 100
+    : (billAmount * selectedTip) / 100;
 
-    let tipAmount = 0;
-    if (customTip > 0) {
-        tipAmount = (billAmount * customTip) / 100;
-    } else if (selectedTip > 0) {
-        tipAmount = (billAmount * selectedTip) / 100;
-    }
-    // Tip per Person
-    const tipPerPerson = tipAmount / numPeople;
-    tipAmountPerPerson.textContent = `${tipPerPerson.toFixed(2)}`;
+    // Divide by number of people and round
+    const tipPerPerson = numPeople > 0 ? round(tipAmount / numPeople) : 0;
+    const basePerPerson = numPeople > 0 ? round(billAmount / numPeople) : 0;
 
-    console.log('Tip per Person: ' + tipPerPerson.toFixed(2));
-    console.log('Total per Person with tip : ' + (totalPerPerson + tipPerPerson).toFixed(2))
+    const totalPerPerson = round(basePerPerson + tipPerPerson); // Total without Tip
+
+    // Update the interface
+    tipAmountPerPerson.textContent = `$${tipPerPerson}`;
+    totalAmountPerPerson.textContent = `$${totalPerPerson}`;
+
 }
 
-resetBtn.addEventListener("click", () => {
+form.addEventListener("reset", () => {
     // Reset all field values
-    billAmountInput.value = '';
-    numPeopleInput.value = 1;
-    customTipInput.value = '0';
     customTip = 0;
     selectedTip = 0;
     tipButtons.forEach(button => button.classList.remove("active"));
