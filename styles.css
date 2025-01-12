@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --font-primary: "Space Mono", serif;
+  --font-size-title: 1.5rem;
+
+  --font-wgh-medium: 700;
+  --font-wgh-regular: 400;
+  --font-wgh-light: 300;
+
+  --Strong-cyan: hsl(172, 67%, 45%);
+
+  /* cards color */
+  --Very-dark-cyan: hsl(183, 100%, 15%);
+  --Dark-grayish-cyan: hsl(186, 14%, 43%);
+  --Grayish-cyan: hsl(184, 14%, 56%);
+  --Light-grayish-cyan: hsl(185, 41%, 84%);
+  --Very-light-grayish-cyan: hsl(189, 41%, 97%);
+  --White: hsl(0, 0%, 100%);
+
+  --corner-radius: 0.875rem;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--Light-grayish-cyan);
+}
+
+h1 {
+  text-align: center;
+  font-size: var(--font-size-title);
+  padding-block: 1.5rem;
+  color: var(--Very-dark-cyan);
+  letter-spacing: 0.5rem;
+}
+
+form {
+  background-color: var(--White);
+  padding: 2rem;
+  border-radius: 1rem 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  & :where(label) {
+    color: var(--Dark-grayish-cyan);
+    font-weight: var(--font-wgh-medium);
+  }
+
+  & :where(input, button) {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: var(--font-primary);
+    background-color: var(--Very-light-grayish-cyan);
+  }
+}
+
+input {
+  text-align: end;
+  font-weight: 700;
+  font-size: var(--font-size-title);
+  color: var(--Very-dark-cyan);
+}
+input::placeholder {
+  font-weight: 700;
+  text-align: end;
+  font-size: var(--font-size-title);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tip-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+  gap: 1rem; /* Espaciado entre botones */
+}
+
+.tip-buttons button {
+  width: 100%; /* Ocupa todo el espacio de la columna */
+  text-align: center; /* Centra el texto dentro de los botones */
+  font-size: var(--font-size-title); /* Ajusta la fuente para uniformidad */
+  border: none; /* Elimina bordes si es necesario */
+  background-color: var(--Very-dark-cyan);
+  color: var(--White);
+  font-weight: var(--font-wgh-medium);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tip-buttons input[type="number"] {
+  width: 100%;
+}
+
+.tip-buttons button:hover {
+  background-color: var(--Strong-cyan);
+  color: var(--Very-dark-cyan);
+}
+
+.results {
+  background-color: var(--Very-dark-cyan);
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-item p {
+  color: var(--White);
+  display: flex;
+  flex-direction: column;
+
+  & :where(span) {
+    color: var(--Dark-grayish-cyan);
+  }
+}
+
+.result-item :nth-child(2) {
+  font-weight: var(--font-wgh-medium);
+  font-size: var(--font-size-title);
+  color: var(--Strong-cyan);
+}
+
+button[type="reset"] {
+  background-color: var(--Dark-grayish-cyan);
+  color: var(--White);
+  font-weight: var(--font-wgh-medium);
+  transition: background-color 0.3s;
+}
+button[type="reset"]:hover {
+  background-color: var(--Strong-cyan);
+  color: var(--Very-dark-cyan);
+}
+
+footer {
+  display: none;
+  font-size: 11px;
+  text-align: center;
+}
+
+footer a {
+  color: hsl(228, 45%, 44%);
+}
