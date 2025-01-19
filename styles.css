@@ -21,6 +21,9 @@
   --corner-radius: 0.875rem;
 }
 
+/* ------------------------------
+   Reset Global
+------------------------------ */
 *,
 *::before,
 *::after {
@@ -29,6 +32,9 @@
   box-sizing: border-box;
 }
 
+/* ------------------------------
+   Estilos base
+------------------------------ */
 body {
   font-family: var(--font-primary);
   background-color: var(--Light-grayish-cyan);
@@ -43,6 +49,19 @@ h1 {
   letter-spacing: 0.5rem;
 }
 
+footer {
+  display: none;
+  font-size: 11px;
+  text-align: center;
+}
+
+footer a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* ------------------------------
+   Componentes
+------------------------------ */
 form {
   background-color: var(--White);
   padding: 2rem;
@@ -65,15 +84,16 @@ form {
   }
 }
 
-.billAmount {
-  background-image: url(./images/icon-dollar.svg);
-  background-repeat: no-repeat;
-  background-position: 1rem center;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-.numPeople {
-  background-image: url(./images/icon-person.svg);
-  background-repeat: no-repeat;
-  background-position: 1rem center;
+
+.label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 input {
@@ -91,55 +111,26 @@ input:focus {
   outline: 3px solid var(--Strong-cyan);
 }
 
-.shake {
-  animation: error-shake 0.5s ease-in-out;
+.billAmount {
+  background-image: url(./images/icon-dollar.svg);
+  background-repeat: no-repeat;
+  background-position: 1rem center;
 }
-@keyframes error-shake {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  75% {
-    transform: translateX(-5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.numPeople {
+  background-image: url(./images/icon-person.svg);
+  background-repeat: no-repeat;
+  background-position: 1rem center;
 }
 
-.label-group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-input:user-invalid,
-.user-invalid {
-  border: 2px solid red;
-}
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
+/* Botones */
 .tip-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.tip-buttons button {
+.tip-buttons button,
+button[type="reset"] {
   width: 100%;
   text-align: center;
   font-size: var(--font-size-title);
@@ -161,6 +152,19 @@ input:user-invalid,
   color: var(--Very-dark-cyan);
 }
 
+button[type="reset"] {
+  background-color: var(--Dark-grayish-cyan);
+  color: var(--White);
+  font-weight: var(--font-wgh-medium);
+  transition: background-color 0.3s;
+}
+button[type="reset"]:hover {
+  background-color: var(--Strong-cyan);
+  color: var(--Very-dark-cyan);
+  cursor: pointer;
+}
+
+/* Resultados */
 .results {
   background-color: var(--Very-dark-cyan);
   padding: 2rem 1rem;
@@ -192,24 +196,71 @@ input:user-invalid,
   color: var(--Strong-cyan);
 }
 
-button[type="reset"] {
-  background-color: var(--Dark-grayish-cyan);
-  color: var(--White);
-  font-weight: var(--font-wgh-medium);
-  transition: background-color 0.3s;
-}
-button[type="reset"]:hover {
-  background-color: var(--Strong-cyan);
-  color: var(--Very-dark-cyan);
-  cursor: pointer;
+/* ------------------------------
+   Estados
+------------------------------ */
+.shake {
+  animation: error-shake 0.5s ease-in-out;
 }
 
-footer {
-  display: none;
-  font-size: 11px;
-  text-align: center;
+input:user-invalid,
+.user-invalid {
+  border: 3px solid red;
 }
 
-footer a {
-  color: hsl(228, 45%, 44%);
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}
+
+/* ------------------------------
+   Animaciones
+------------------------------ */
+@keyframes error-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25%,
+  75% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+/* ----- Responsive ----- */
+@media (width >= 768px) {
+  main {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+  }
+
+  form {
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 64rem; /* 1024px */
+  }
+
+  .form-section.left {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tip-buttons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .results {
+    width: 100%;
+    justify-content: space-between;
+    padding: 2.5rem;
+  }
+
+  .result-item :nth-child(2) {
+    font-size: 3rem;
+  }
 }
