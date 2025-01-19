@@ -32,6 +32,7 @@
 body {
   font-family: var(--font-primary);
   background-color: var(--Light-grayish-cyan);
+  font-weight: var(--font-wgh-medium);
 }
 
 h1 {
@@ -64,6 +65,17 @@ form {
   }
 }
 
+.billAmount {
+  background-image: url(./images/icon-dollar.svg);
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+}
+.numPeople {
+  background-image: url(./images/icon-person.svg);
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+}
+
 input {
   text-align: end;
   font-weight: 700;
@@ -75,6 +87,45 @@ input::placeholder {
   text-align: end;
   font-size: var(--font-size-title);
 }
+input:focus {
+  outline: 3px solid var(--Strong-cyan);
+}
+
+.shake {
+  animation: error-shake 0.5s ease-in-out;
+}
+@keyframes error-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.label-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input:user-invalid,
+.user-invalid {
+  border: 2px solid red;
+}
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+}
 
 .form-group {
   display: flex;
@@ -84,15 +135,15 @@ input::placeholder {
 
 .tip-buttons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
-  gap: 1rem; /* Espaciado entre botones */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 .tip-buttons button {
-  width: 100%; /* Ocupa todo el espacio de la columna */
-  text-align: center; /* Centra el texto dentro de los botones */
-  font-size: var(--font-size-title); /* Ajusta la fuente para uniformidad */
-  border: none; /* Elimina bordes si es necesario */
+  width: 100%;
+  text-align: center;
+  font-size: var(--font-size-title);
+  border: none;
   background-color: var(--Very-dark-cyan);
   color: var(--White);
   font-weight: var(--font-wgh-medium);
@@ -104,7 +155,8 @@ input::placeholder {
   width: 100%;
 }
 
-.tip-buttons button:hover {
+.tip-buttons button:focus,
+.tip-btn.active {
   background-color: var(--Strong-cyan);
   color: var(--Very-dark-cyan);
 }
@@ -149,6 +201,7 @@ button[type="reset"] {
 button[type="reset"]:hover {
   background-color: var(--Strong-cyan);
   color: var(--Very-dark-cyan);
+  cursor: pointer;
 }
 
 footer {
