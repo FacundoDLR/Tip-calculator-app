@@ -79,11 +79,22 @@ form :where(label, input, button) {
   font-family: var(--font-primary);
 }
 
+form :where(label) {
+  font-size: 0.8rem;
+  color: var(--Dark-grayish-cyan);
+}
+
 form :where(input, button) {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
   background-color: var(--Very-light-grayish-cyan);
+}
+
+.form-section.left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .form-group {
@@ -241,13 +252,8 @@ input:user-invalid,
   form {
     flex-direction: row;
     gap: 2rem;
-    max-width: 64rem; /* 1024px */
-  }
-
-  .form-section.left {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    max-width: 57.5rem; /* 1024px */
+    border-radius: 1rem;
   }
 
   .tip-buttons {
