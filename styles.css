@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+/* ------------------------------
+   Variables CSS
+------------------------------ */
 :root {
   --font-primary: "Space Mono", serif;
   --font-size-title: 1.5rem;
@@ -10,7 +13,7 @@
 
   --Strong-cyan: hsl(172, 67%, 45%);
 
-  /* cards color */
+  /* Card Colors */
   --Very-dark-cyan: hsl(183, 100%, 15%);
   --Dark-grayish-cyan: hsl(186, 14%, 43%);
   --Grayish-cyan: hsl(184, 14%, 56%);
@@ -19,6 +22,7 @@
   --White: hsl(0, 0%, 100%);
 
   --corner-radius: 0.875rem;
+  --error-color: red;
 }
 
 /* ------------------------------
@@ -33,7 +37,7 @@
 }
 
 /* ------------------------------
-   Estilos base
+   Base Styles
 ------------------------------ */
 body {
   font-family: var(--font-primary);
@@ -60,7 +64,7 @@ footer a {
 }
 
 /* ------------------------------
-   Componentes
+   Components
 ------------------------------ */
 form {
   background-color: var(--White);
@@ -69,19 +73,17 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
 
-  & :where(label) {
-    color: var(--Dark-grayish-cyan);
-    font-weight: var(--font-wgh-medium);
-  }
+form :where(label, input, button) {
+  font-family: var(--font-primary);
+}
 
-  & :where(input, button) {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-family: var(--font-primary);
-    background-color: var(--Very-light-grayish-cyan);
-  }
+form :where(input, button) {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--Very-light-grayish-cyan);
 }
 
 .form-group {
@@ -102,11 +104,7 @@ input {
   font-size: var(--font-size-title);
   color: var(--Very-dark-cyan);
 }
-input::placeholder {
-  font-weight: 700;
-  text-align: end;
-  font-size: var(--font-size-title);
-}
+
 input:focus {
   outline: 3px solid var(--Strong-cyan);
 }
@@ -116,21 +114,21 @@ input:focus {
   background-repeat: no-repeat;
   background-position: 1rem center;
 }
+
 .numPeople {
   background-image: url(./images/icon-person.svg);
   background-repeat: no-repeat;
   background-position: 1rem center;
 }
 
-/* Botones */
+/* Tip Buttons */
 .tip-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.tip-buttons button,
-button[type="reset"] {
+.tip-buttons button {
   width: 100%;
   text-align: center;
   font-size: var(--font-size-title);
@@ -158,13 +156,13 @@ button[type="reset"] {
   font-weight: var(--font-wgh-medium);
   transition: background-color 0.3s;
 }
+
 button[type="reset"]:hover {
   background-color: var(--Strong-cyan);
   color: var(--Very-dark-cyan);
-  cursor: pointer;
 }
 
-/* Resultados */
+/* Results */
 .results {
   background-color: var(--Very-dark-cyan);
   padding: 2rem 1rem;
@@ -184,10 +182,10 @@ button[type="reset"]:hover {
   color: var(--White);
   display: flex;
   flex-direction: column;
+}
 
-  & :where(span) {
-    color: var(--Dark-grayish-cyan);
-  }
+.result-item p :where(span) {
+  color: var(--Dark-grayish-cyan);
 }
 
 .result-item :nth-child(2) {
@@ -197,7 +195,7 @@ button[type="reset"]:hover {
 }
 
 /* ------------------------------
-   Estados
+   States
 ------------------------------ */
 .shake {
   animation: error-shake 0.5s ease-in-out;
@@ -205,16 +203,16 @@ button[type="reset"]:hover {
 
 input:user-invalid,
 .user-invalid {
-  border: 3px solid red;
+  border: 3px solid var(--error-color);
 }
 
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-size: 0.8rem;
 }
 
 /* ------------------------------
-   Animaciones
+   Animations
 ------------------------------ */
 @keyframes error-shake {
   0%,
@@ -230,7 +228,9 @@ input:user-invalid,
   }
 }
 
-/* ----- Responsive ----- */
+/* ------------------------------
+   Responsive
+------------------------------ */
 @media (width >= 768px) {
   main {
     height: 100vh;
@@ -262,5 +262,9 @@ input:user-invalid,
 
   .result-item :nth-child(2) {
     font-size: 3rem;
+  }
+
+  button[type="reset"] {
+    font-size: var(--font-size-title);
   }
 }
